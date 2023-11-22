@@ -1,0 +1,10 @@
+{% extends './base.html'%}
+{% block post_container %}
+<p> {{post.title}} </p>
+<p> 삭제하시겠습니까?</p>
+<form method="POST">{%csrf_token%}
+<div>
+  <input type="submit" value ="삭제하기">
+</div>
+</form>
+{% endblock post_container %}

@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+
+{% block post_container %}
+<navbar>
+  {% if user.is_authenticated %}
+    <a href="{% url 'account_logout'%}">로그아웃</a>
+  {% else %}
+    <a href="{% url 'account_login'%}">로그인</a>
+    <a href="{% url 'account_signup' %}">회원가입</a>
+  {% endif %}
+</navbar>
+  <h3> 글 목록 페이지에요 </h3>
+  {%if user.is_authenticated%}
+  <a href={%url 'post-create'%}>글쓰기</a>
+  {% endif%}
+  <table>
+      <tr>
+        <td>제목</td>
+        <td>작성일</td>
+        <td>수정일</td>
+      </tr>
+      {% for post in posts %}
+        <tr>
+          <td><a href={%url 'post-detail' post.id%}>{{post.title}}</a></td>
+          <td>{{post.dt_created}}</td>
+          <td>{{post.dt_modified}}</td>
+        </tr>
+    {% endfor %}
+      </table>
+{% endblock post_container%}
